@@ -1,8 +1,8 @@
-import { faker } from "@faker-js/faker";
+import { faker } from '@faker-js/faker';
 
 const options = { env: { snapshotOnly: true } };
 
-describe("Create Issue", options, () => {
+describe('Create Issue', options, () => {
   const issue = {
     title: `issue-${faker.datatype.uuid()}`,
     description: faker.random.words(3),
@@ -18,11 +18,11 @@ describe("Create Issue", options, () => {
     cy.api_createProject(issue.project);
   });
 
-  it("successfully", () => {
+  it('successfully', () => {
     cy.gui_createIssue(issue);
 
-    cy.get(".issue-details")
-      .should("contain", issue.title)
-      .and("contain", issue.description);
+    cy.get('.issue-details')
+      .should('contain', issue.title)
+      .and('contain', issue.description);
   });
 });

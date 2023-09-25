@@ -1,9 +1,9 @@
-import { faker } from "@faker-js/faker";
+import { faker } from '@faker-js/faker';
 
-describe("Create Project", () => {
+describe('Create Project', () => {
   beforeEach(() => cy.api_deleteProjects());
 
-  it("successfully", () => {
+  it('successfully', () => {
     const project = {
       name: `project-${faker.datatype.uuid()}`,
       description: faker.random.words(5),

@@ -1,8 +1,8 @@
-import { faker } from "@faker-js/faker";
+import { faker } from '@faker-js/faker';
 
 const options = { env: { snapshotOnly: true } };
 
-describe("Set label on issue", options, () => {
+describe('Set label on issue', options, () => {
   const issue = {
     title: `issue-${faker.datatype.uuid()}`,
     description: faker.random.words(3),
@@ -14,7 +14,7 @@ describe("Set label on issue", options, () => {
 
   const label = {
     name: `label-${faker.random.word()}`,
-    color: "#ffaabb",
+    color: '#ffaabb',
   };
 
   beforeEach(() => {
@@ -23,20 +23,20 @@ describe("Set label on issue", options, () => {
     cy.api_createIssue(issue).then((res) => {
       cy.api_createLabel(res.body.project_id, label);
       cy.visit(
-        `${Cypress.env("user_name")}/${issue.project.name}/issues/${
+        `${Cypress.env('user_name')}/${issue.project.name}/issues/${
           res.body.iid
         }`
       );
     });
   });
 
-  it("successfully", () => {
+  it('successfully', () => {
     cy.gui_setLabelOnIssue(label);
 
-    cy.get(".qa-labels-block").should("contain", label.name);
-    cy.get(".qa-labels-block span").should(
-      "have.attr",
-      "style",
+    cy.get('.qa-labels-block').should('contain', label.name);
+    cy.get('.qa-labels-block span').should(
+      'have.attr',
+      'style',
       `background-color: ${label.color}; color: #333333;`
     );
   });

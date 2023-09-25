@@ -1,6 +1,6 @@
-import { faker } from "@faker-js/faker";
+import { faker } from '@faker-js/faker';
 
-describe("git clone", () => {
+describe('git clone', () => {
   const project = {
     name: `project-${faker.datatype.uuid()}`,
     description: faker.random.words(5),
@@ -11,11 +11,11 @@ describe("git clone", () => {
     cy.api_createProject(project);
   });
 
-  it("successfully", () => {
+  it('successfully', () => {
     cy.cloneViaSSH(project);
 
     cy.readFile(`cypress/downloads/${project.name}/README.md`)
-      .should("contain", `# ${project.name}`)
-      .and("contain", project.description);
+      .should('contain', `# ${project.name}`)
+      .and('contain', project.description);
   });
 });

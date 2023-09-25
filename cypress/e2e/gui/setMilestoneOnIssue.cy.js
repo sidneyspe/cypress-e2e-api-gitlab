@@ -1,8 +1,8 @@
-import { faker } from "@faker-js/faker";
+import { faker } from '@faker-js/faker';
 
 const options = { env: { snapshotOnly: true } };
 
-describe("Set milestone on issue", options, () => {
+describe('Set milestone on issue', options, () => {
   const issue = {
     title: `issue-${faker.datatype.uuid()}`,
     description: faker.random.words(3),
@@ -22,16 +22,16 @@ describe("Set milestone on issue", options, () => {
     cy.api_createIssue(issue).then((response) => {
       cy.api_createMilestone(response.body.project_id, milestone);
       cy.visit(
-        `${Cypress.env("user_name")}/${issue.project.name}/issues/${
+        `${Cypress.env('user_name')}/${issue.project.name}/issues/${
           response.body.iid
         }`
       );
     });
   });
 
-  it("successfully", () => {
+  it('successfully', () => {
     cy.gui_setMilestoneOnIssue(milestone);
 
-    cy.get(".block.milestone").should("contain", milestone.title);
+    cy.get('.block.milestone').should('contain', milestone.title);
   });
 });
